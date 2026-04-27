@@ -1,22 +1,44 @@
 package Praticando.Pessoal;
 
+import java.util.Scanner;
+
 public class ProjetoRecupera01 {
     public static void main(String[] args) {
-        String nome = " ";
-        String anoEscolar = " ";
-        double mediaEscolar = 6.0;
-        double nota01 = 0;
-        double nota02 = 0;
-        double nota03 = 0;
-        double nota04 = 0;
-        boolean isPassarDeAno = (nota01 + nota02 + nota03 + nota04) / 4.0 >= mediaEscolar;
-        double mediaFinal = (nota01 + nota02 + nota03 + nota04) / 4.0;
+        Scanner scanner = new Scanner(System.in);
 
-        if (isPassarDeAno) {
-            System.out.println(nome+" você passou de ano e concluiu o "+anoEscolar+" com média final de " +mediaFinal+" ,PARABÉNS!!");
-        }
-        else {
-            System.out.println(nome+", nós da Projeto Recupera lhe informamos que você não atingiu a média necessaria para passar de ano e concluir o "+anoEscolar+" sua média final foi de "+mediaFinal+", oque não é o necessario, sentimos muito e desejamos um futuro brilhante para você.");
-        }
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+
+        System.out.print("Ano Escolar: ");
+        String anoEscolar = scanner.nextLine();
+
+        System.out.print("Nota 1: ");
+        double nota01 = scanner.nextDouble();
+        scanner.nextLine();
+
+        System.out.print("Nota 2: ");
+        double nota02 = scanner.nextDouble();
+        scanner.nextLine();
+
+        System.out.print("Nota 3: ");
+        double nota03 = scanner.nextDouble();
+        scanner.nextLine();
+
+        System.out.print("Nota 4: ");
+        double nota04 = scanner.nextDouble();
+        scanner.nextLine();
+
+        System.out.print("Média mínima da sua instituição: ");
+        double mediaMinima = scanner.nextDouble();
+        scanner.nextLine();
+
+        ProjetoRecuperaAluno aluno = new ProjetoRecuperaAluno (nome, anoEscolar, nota01, nota02, nota03, nota04, mediaMinima);
+
+        aluno.exibirResultado();
+
+        scanner.close();
+
+
+
     }
 }
