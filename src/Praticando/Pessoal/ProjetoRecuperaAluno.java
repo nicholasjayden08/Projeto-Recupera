@@ -1,30 +1,32 @@
 package Praticando.Pessoal;
 
+import java.util.ArrayList;
+
 public class ProjetoRecuperaAluno {
     private String nome;
     private String anoEscolar;
-    private double nota01 = 0;
-    private double nota02 = 0;
-    private double nota03 = 0;
-    private double nota04 = 0;
+    private ArrayList<Double> notas;
     private int notasAdicionadas = 0;
     private double mediaMinima;
 
     public ProjetoRecuperaAluno(String nome, String anoEscolar,double mediaMinima) {
         this.nome = nome;
         this.anoEscolar = anoEscolar;
-        this.nota01 = nota01 = 0;
-        this.nota02 = nota02 = 0;
-        this.nota03 = nota03 = 0;
-        this.nota04 = nota04 = 0;
         this.mediaMinima = mediaMinima;
+        this.notas = new ArrayList<>();
     }
 
     public double calcularMedia() {
-        if (nota01 == 0 && nota02 == 0 && nota03 == 0 && nota04 == 0) {
+        if (notas.isEmpty()) {
             return 0;
         }
-        return (nota01 + nota02 + nota03 + nota04) / 4.0;
+
+        double soma = 0;
+        for (double nota : notas) {
+            soma += nota;
+        }
+
+        return soma / notas.size();
     }
 
     public boolean passou() {
@@ -38,9 +40,13 @@ public class ProjetoRecuperaAluno {
     public void exibirResultado() {
         double media = calcularMedia();
 
+        if (media == 0) {
+            System.out.println(nome + ", você ainda não tem notas registradas em nosso sistema");
+        }
+
         if (passou()) {
             System.out.println(nome + ", você passou de ano no " + anoEscolar
-                    + "com média " + media + " PARABÉNS!!");
+                    + " com média " + media + " PARABÉNS!!");
         }
         else {
             System.out.println(nome + ", você não passou. Sua média foi" + media
@@ -50,35 +56,16 @@ public class ProjetoRecuperaAluno {
     }
 
     public void adicionarNota(double nota) {
-        if (nota01 == 0) {
-            nota01 = nota;
-            System.out.println("✅ Nota 1 adicionada: " + nota);
+        if (nota <= 0 || nota > 10) {
+            System.out.println("❌ Nota inválida! Deve estar entre 0 e 10");
+            return;
         }
-        else if (nota02 == 0) {
-            nota02 = nota;
-            System.out.println("✅ Nota 2 adicionada: " + nota);
-        }
-        else if (nota03 == 0) {
-            nota03 = nota;
-            System.out.println("✅ Nota 3 adicionada: " + nota);
-        }
-        else if (nota04 == 0) {
-            nota04 = nota;
-            System.out.println("✅ Nota 4 adicionada: " + nota);
-        }
-        else {
-            System.out.println("❌ Este aluno já tem todas as 4 notas!");
-        }
+        notas.add(nota);
+        System.out.println("✅ Nota " + String.format("%.2f", nota) + " adicionada");
     }
 
     public String statusNotas() {
-        int notasAdicionadas = 0;
-        if (nota01 > 0) notasAdicionadas++;
-        if (nota02 > 0) notasAdicionadas++;
-        if (nota03 > 0) notasAdicionadas++;
-        if (nota04 > 0) notasAdicionadas++;
-
-        return notasAdicionadas + "/4 notas adicionadas";
+        return notas.size() + " notas adicionadas";
     }
 
     public double getMedia() {
