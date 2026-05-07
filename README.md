@@ -14,10 +14,9 @@ A student management system built in Java with dynamic grade registration and in
 - ✅ Track student progression status (passed/failed)
 
 ## Project Structure
-src/Praticando/Pessoal/
-├── ProjetoRecuperaAluno.java        - Student model with grade management
-├── ProjetoRecuperaSistema.java      - System that manages all students
-└── ProjetoRecuperaMain.java         - Interactive menu interface
+* `ProjetoRecuperaAluno.java` - Student model with grade management
+* `ProjetoRecuperaSistema.java` - System that manages all students
+* `ProjetoRecuperaMain.java` - Interactive menu interface
 
 ## How to Run
 
